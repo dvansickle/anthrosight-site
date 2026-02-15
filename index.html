@@ -3,27 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Anthrosight — Post-decision listening for restaurants & hotels</title>
+    <title>Anthrosight — Post-decision listening for SMBs</title>
     <meta
       name="description"
-      content="Anthrosight is a post-visit listening service for restaurants and hotels. Short reflections (not surveys) distilled into a clear memo: what mattered, what didn’t, and where expectations broke."
+      content="Anthrosight is a post-decision listening service that captures short customer reflections (4–5 minutes, no surveys) and synthesizes them into a concise insight memo explaining what mattered, where expectations broke down, and why experiences felt the way they did."
     />
     <meta name="robots" content="index,follow" />
     <style>
       :root{
         --bg:#0b1020;
-        --panel:#0f1730;
-        --panel2:#0c142b;
+        --panel: rgba(255,255,255,.05);
+        --panel2: rgba(255,255,255,.03);
         --text:#e9edf7;
         --muted:#b6c0d6;
         --muted2:#8e9ab6;
-        --line:rgba(255,255,255,.10);
+        --line:rgba(255,255,255,.12);
         --brand:#7c5cff;
         --brand2:#23c6b6;
         --shadow: 0 18px 50px rgba(0,0,0,.35);
         --radius: 18px;
         --radius2: 14px;
-        --max: 1080px;
+        --max: 1040px;
       }
 
       *{box-sizing:border-box}
@@ -37,25 +37,28 @@
           radial-gradient(900px 600px at 50% 95%, rgba(124,92,255,.12), transparent 60%),
           var(--bg);
         color:var(--text);
-        line-height:1.45;
+        line-height:1.5;
       }
 
       a{color:inherit}
-      .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 64px}
+      .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 70px}
+
+      /* Nav */
       .nav{
         display:flex; align-items:center; justify-content:space-between;
         gap:16px; padding:10px 0 22px;
       }
       .brand{
         display:flex; align-items:center; gap:10px; text-decoration:none;
-        font-weight:700; letter-spacing:.2px;
+        font-weight:750; letter-spacing:.2px;
       }
       .mark{
         width:34px; height:34px; border-radius:10px;
         background: linear-gradient(135deg, rgba(124,92,255,1), rgba(35,198,182,1));
         box-shadow: 0 12px 30px rgba(124,92,255,.25);
+        flex: 0 0 auto;
       }
-      .navlinks{display:flex; gap:14px; align-items:center}
+      .navlinks{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
       .navlinks a{
         text-decoration:none; color:var(--muted);
         font-size:14px; padding:8px 10px; border-radius:10px;
@@ -67,21 +70,38 @@
         background: rgba(255,255,255,.03);
       }
 
-      .hero{
-        display:grid;
-        grid-template-columns: 1.2fr .8fr;
-        gap:26px;
-        align-items:stretch;
-        margin-top:6px;
-      }
-
+      /* Layout helpers */
       .card{
-        background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+        background: linear-gradient(180deg, var(--panel), var(--panel2));
         border:1px solid var(--line);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
       }
-      .heroMain{padding:28px 26px 26px}
+      .section{
+        margin-top:18px;
+        padding:22px 22px;
+      }
+      .grid2{
+        display:grid;
+        grid-template-columns: 1.15fr .85fr;
+        gap:16px;
+        align-items:stretch;
+      }
+      .grid3{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:14px;
+      }
+      .mini{
+        padding:16px;
+        border-radius: var(--radius2);
+        border:1px solid var(--line);
+        background: rgba(255,255,255,.03);
+      }
+      .mini h3{margin:0 0 6px; font-size:14.5px}
+      .mini p{margin:0; color:var(--muted); font-size:13.5px}
+
+      /* Hero */
       .eyebrow{
         display:inline-flex; align-items:center; gap:10px;
         font-size:13px; color:var(--muted);
@@ -104,7 +124,7 @@
         margin:0;
         color: var(--muted);
         font-size: 16.5px;
-        max-width: 62ch;
+        max-width: 70ch;
       }
       .ctaRow{
         margin-top:18px;
@@ -117,7 +137,7 @@
         padding:12px 14px;
         border-radius: 14px;
         text-decoration:none;
-        font-weight:650;
+        font-weight:700;
         font-size:14px;
         display:inline-flex; align-items:center; gap:10px;
         transition: transform .06s ease, background .15s ease, border-color .15s ease;
@@ -139,14 +159,12 @@
         font-size:13px;
       }
 
-      .heroSide{padding:22px}
+      /* Aside */
       .sideTitle{
-        font-weight:700; margin:0 0 10px;
+        font-weight:800; margin:0 0 10px;
         letter-spacing:-.2px;
       }
-      .pillGrid{
-        display:grid; gap:10px;
-      }
+      .pillGrid{display:grid; gap:10px;}
       .pill{
         border:1px solid var(--line);
         background: rgba(11,16,32,.55);
@@ -154,37 +172,37 @@
         padding:12px 12px;
       }
       .pill .k{display:block; font-size:12px; color:var(--muted2); margin-bottom:4px}
-      .pill .v{display:block; font-size:14px; color:var(--text); font-weight:600}
+      .pill .v{display:block; font-size:14px; color:var(--text); font-weight:700}
       .pill .s{display:block; font-size:13px; color:var(--muted); margin-top:6px}
 
-      .section{
-        margin-top:26px;
-        padding:22px 22px;
-      }
-      .section h2{
+      /* Typography */
+      h2{
         margin:0 0 10px;
         font-size: 18px;
         letter-spacing:-.2px;
       }
-      .grid3{
-        display:grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap:14px;
-      }
-      .mini{
-        padding:16px;
+      p{margin:10px 0; color:var(--muted)}
+      .lead{color:var(--text); font-weight:650}
+      .quote{
+        margin:12px 0 0;
+        padding:14px 14px;
         border-radius: var(--radius2);
         border:1px solid var(--line);
         background: rgba(255,255,255,.03);
+        color:var(--text);
+        font-weight:650;
       }
-      .mini h3{margin:0 0 6px; font-size:14.5px}
-      .mini p{margin:0; color:var(--muted); font-size:13.5px}
 
+      /* Lists */
+      ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+      li{margin:6px 0}
+
+      /* How it works steps */
       .how{
         display:grid;
         grid-template-columns: 1fr 1fr;
         gap:14px;
-        margin-top:14px;
+        margin-top:12px;
       }
       .step{
         padding:16px;
@@ -197,57 +215,44 @@
         display:inline-flex; align-items:center; justify-content:center;
         background: rgba(124,92,255,.16);
         border:1px solid rgba(124,92,255,.28);
-        font-weight:800; margin-bottom:10px;
+        font-weight:850; margin-bottom:10px;
       }
       .step h3{margin:0 0 6px; font-size:14.5px}
       .step p{margin:0; color:var(--muted); font-size:13.5px}
 
-      .example{
+      /* Pricing */
+      .pricing{
         display:grid;
-        grid-template-columns: 1.05fr .95fr;
+        grid-template-columns: repeat(3, 1fr);
         gap:14px;
-        margin-top:14px;
+        margin-top:12px;
       }
-      .quoteBox{
+      .priceCard{
         padding:16px;
         border-radius: var(--radius2);
         border:1px solid var(--line);
         background: rgba(255,255,255,.03);
       }
-      blockquote{
-        margin:0;
-        padding:0;
+      .priceTop{
+        display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      }
+      .priceCard h3{margin:0; font-size:14.5px}
+      .price{
+        font-weight:900;
+        font-size:18px;
+        letter-spacing:-.2px;
         color:var(--text);
-        font-weight:600;
-        font-size:14.5px;
-        letter-spacing:-.1px;
       }
-      .qmeta{
-        margin-top:10px;
-        color:var(--muted2);
-        font-size:12.5px;
-      }
-      .bullet{
-        margin:10px 0 0;
-        padding-left:18px;
-        color:var(--muted);
-        font-size:13.5px;
-      }
-      .bullet li{margin:6px 0}
+      .priceCard p{margin:8px 0 0; color:var(--muted); font-size:13.5px}
 
+      /* Pilot form */
       .cta{
-        margin-top:26px;
-        padding:22px;
         display:grid;
         grid-template-columns: 1.1fr .9fr;
         gap:14px;
         align-items:stretch;
       }
-      .cta h2{margin:0 0 8px}
-      .cta p{margin:0; color:var(--muted)}
-      form{
-        display:grid; gap:10px;
-      }
+      form{display:grid; gap:10px}
       label{font-size:12.5px; color:var(--muted2)}
       input, textarea{
         width:100%;
@@ -262,16 +267,15 @@
         border-color: rgba(124,92,255,.55);
         box-shadow: 0 0 0 4px rgba(124,92,255,.12);
       }
-      textarea{min-height:96px; resize:vertical}
+      textarea{min-height:92px; resize:vertical}
       .formRow{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
       .submitRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-      .note{
-        font-size:12.5px; color:var(--muted2);
-      }
+      .note{font-size:12.5px; color:var(--muted2)}
 
+      /* Footer */
       .footer{
         margin-top:26px;
-        display:flex; justify-content:space-between; gap:12px;
+        display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
         color:var(--muted2);
         font-size:12.5px;
         padding:10px 4px 0;
@@ -279,10 +283,10 @@
 
       /* Responsive */
       @media (max-width: 920px){
-        .hero{grid-template-columns: 1fr}
+        .grid2{grid-template-columns: 1fr}
         .grid3{grid-template-columns: 1fr}
         .how{grid-template-columns: 1fr}
-        .example{grid-template-columns: 1fr}
+        .pricing{grid-template-columns: 1fr}
         .cta{grid-template-columns: 1fr}
         .formRow{grid-template-columns: 1fr}
       }
@@ -298,18 +302,26 @@
         </a>
         <nav class="navlinks" aria-label="Site">
           <a href="#how">How it works</a>
-          <a href="#example">Example</a>
+          <a href="#questions">Questions</a>
+          <a href="#pricing">Pricing</a>
           <a href="#pilot">Pilot</a>
         </nav>
       </header>
 
-      <main id="top" class="hero">
-        <section class="card heroMain">
-          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Post-decision listening for restaurants & hotels</div>
-          <h1>Understand what guests actually experienced — not just what they rated.</h1>
+      <!-- HERO -->
+      <main id="top" class="grid2">
+        <section class="card section">
+          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Post-decision listening for SMBs</div>
+          <h1>Understand why experiences felt the way they did — not just how they were rated.</h1>
+
           <p class="sub">
-            Anthrosight is a short post-visit listening service. We invite recent guests to reflect (no surveys, no scores),
-            then synthesize the conversations into a clear memo: what mattered, what didn’t, and where expectations broke down.
+            <span class="lead" style="font-weight:700;">Anthrosight</span> is a post-decision listening service for restaurants, boutique hotels, and local businesses.
+            We capture short customer reflections (<strong>4–5 minutes</strong>, no surveys) and turn them into a concise memo explaining what actually mattered,
+            where expectations broke down, and why “everything was fine” still didn’t quite click.
+          </p>
+
+          <p class="sub" style="margin-top:10px;">
+            <strong>No surveys. No dashboards. No scores.</strong>
           </p>
 
           <div class="ctaRow">
@@ -317,123 +329,214 @@
             <a class="btn" href="#how">See how it works</a>
             <a class="btn" href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request">Email us</a>
           </div>
+
           <p class="smallprint">
-            Designed for independent businesses and small groups. No integrations required to start.
+            Designed for independent businesses and small groups. One experience at a time.
           </p>
         </section>
 
-        <aside class="card heroSide" aria-label="At a glance">
-          <h2 class="sideTitle">What you get</h2>
+        <aside class="card section" aria-label="At a glance">
+          <h2 class="sideTitle">At a glance</h2>
           <div class="pillGrid">
             <div class="pill">
-              <span class="k">Format</span>
-              <span class="v">A readable insight memo</span>
-              <span class="s">Themes, tensions, expectation gaps, and guest language (with quotes).</span>
-            </div>
-            <div class="pill">
-              <span class="k">Method</span>
-              <span class="v">Short reflections (8–10 min)</span>
-              <span class="s">Delivered via a simple link in an email you already send.</span>
-            </div>
-            <div class="pill">
               <span class="k">Best for</span>
-              <span class="v">3-star mysteries & repeat-visit puzzles</span>
-              <span class="s">When “everything was fine” still doesn’t lead to loyalty.</span>
+              <span class="v">When reviews don’t explain behavior</span>
+              <span class="s">3-star mysteries, repeat-visit puzzles, “fine but not memorable.”</span>
+            </div>
+            <div class="pill">
+              <span class="k">What guests do</span>
+              <span class="v">4–5 minute reflection</span>
+              <span class="s">A short conversation via a link in an email you already send.</span>
+            </div>
+            <div class="pill">
+              <span class="k">What you get</span>
+              <span class="v">A memo you’ll actually read</span>
+              <span class="s">Expectation gaps, emotional inflection points, and the story guests tell.</span>
             </div>
           </div>
         </aside>
       </main>
 
-      <section class="card section" aria-label="Why Anthrosight">
-        <h2>Why this (instead of another survey)?</h2>
-        <div class="grid3">
+      <!-- PROBLEM -->
+      <section class="card section" id="problem" aria-label="Problem statement">
+        <h2>The problem</h2>
+        <p class="lead">You already have feedback: star ratings, reviews, maybe a post-visit survey.</p>
+        <p>
+          The problem isn’t <em>lack</em> of feedback. It’s that none of it explains <strong>why</strong> customers behave as they do.
+        </p>
+        <div class="quote">“Everything looks fine — but something isn’t clicking.”</div>
+
+        <div class="grid3" style="margin-top:14px;">
           <div class="mini">
-            <h3>Scores hide the cause</h3>
-            <p>Ratings tell you *what* guests felt, but not what *created* that feeling.</p>
+            <h3>Scores flatten the story</h3>
+            <p>Ratings tell you what guests felt, but not what created that feeling.</p>
           </div>
           <div class="mini">
-            <h3>Open text gets buried</h3>
-            <p>Most tools treat narrative like an afterthought. We start with the story.</p>
+            <h3>Reviews are incomplete</h3>
+            <p>They over-index on extremes and miss the quiet reasons people don’t return.</p>
           </div>
           <div class="mini">
-            <h3>Meaning before metrics</h3>
-            <p>Use Anthrosight to interpret your numbers, not replace them.</p>
+            <h3>Surveys optimize for measurement</h3>
+            <p>They ask people to be data points—right when context is everything.</p>
           </div>
         </div>
       </section>
 
-      <section id="how" class="card section" aria-label="How it works">
-        <h2>How a listening sprint works</h2>
+      <!-- WHAT IT DOES -->
+      <section class="card section" id="what" aria-label="What Anthrosight does">
+        <h2>What Anthrosight does</h2>
+        <p class="lead">
+          Anthrosight runs short, post-visit reflections with recent customers and synthesizes what they say into a clear, readable insight memo.
+        </p>
+        <p>
+          Instead of asking customers to rate their experience, we ask them to briefly reflect on it. What comes out is:
+          expectation gaps, emotional inflection points, and the language customers use when describing you to others—things
+          ratings and surveys systematically miss.
+        </p>
+
+        <div class="grid3" style="margin-top:14px;">
+          <div class="mini">
+            <h3>This is</h3>
+            <p>A small, fixed-scope listening service delivered as a memo.</p>
+          </div>
+          <div class="mini">
+            <h3>This isn’t</h3>
+            <p>A survey platform, CX dashboard, benchmarking tool, or “AI analytics.”</p>
+          </div>
+          <div class="mini">
+            <h3>Why it matters</h3>
+            <p>Because understanding precedes optimization—and often costs less.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="card section" id="how" aria-label="How a pilot works">
+        <h2>How a pilot works</h2>
         <div class="how">
           <div class="step">
             <div class="n">1</div>
-            <h3>Pick a moment</h3>
-            <p>After checkout, after a meal, after a service visit — one experience type at a time.</p>
+            <h3>Pick one moment</h3>
+            <p>After a meal, after checkout, after a service visit—one experience type at a time.</p>
           </div>
           <div class="step">
             <div class="n">2</div>
-            <h3>Invite guests to reflect</h3>
-            <p>Add a single line + link to the email you already send. No new tools required.</p>
+            <h3>Invite customers to reflect</h3>
+            <p>You add a short link to an email you already send. No new tools. No integrations.</p>
           </div>
           <div class="step">
             <div class="n">3</div>
-            <h3>We listen (no surveys)</h3>
-            <p>Guests share short narratives. We probe gently for expectations, shifts, and meaning.</p>
+            <h3>Customers reflect for 4–5 minutes</h3>
+            <p>No ratings, no scales—just a short conversation designed to capture meaning.</p>
           </div>
           <div class="step">
             <div class="n">4</div>
-            <h3>You get a memo you’ll read</h3>
-            <p>A concise synthesis: what mattered, what didn’t, and the specific moments to fix.</p>
+            <h3>You receive a concise insight memo</h3>
+            <p>What guests expected, where feelings shifted, and what might be worth trying.</p>
           </div>
         </div>
         <p class="smallprint" style="margin-top:12px;">
-          Typical pilot: 10–25 completed reflections over ~2 weeks.
+          Anthrosight intentionally does not own email delivery in v1—your business stays in control of customer communication.
         </p>
       </section>
 
-      <section id="example" class="card section" aria-label="Example output">
-        <h2>Example: what a memo uncovers</h2>
-        <div class="example">
-          <div class="quoteBox">
-            <blockquote>
-              “The food was great — but the pacing made it feel like we were being rushed the whole time.”
-            </blockquote>
-            <div class="qmeta">Common pattern we see: guest satisfaction hinges on expectation gaps (pacing, noise, arrival, communication), not just “quality.”</div>
+      <!-- QUESTIONS -->
+      <section class="card section" id="questions" aria-label="What customers are asked">
+        <h2>What customers are actually asked</h2>
+        <p class="lead">Every reflection follows the same simple structure:</p>
+        <ul>
+          <li><strong>“Thinking back on your visit, what stood out most to you?”</strong></li>
+          <li><strong>“Was that what you expected going in — or different in some way?”</strong></li>
+          <li><strong>“Was there a moment where how you felt about the experience changed?”</strong></li>
+          <li><strong>“If you were telling a friend about this place, what would you say?”</strong></li>
+        </ul>
+        <p class="smallprint">
+          Optional final prompt (time permitting): “Anything you wish had been different?”<br/>
+          No surveys. No demographics. No forced completeness.
+        </p>
+      </section>
+
+      <!-- MEMO -->
+      <section class="card section" id="memo" aria-label="The memo deliverable">
+        <h2>The deliverable: the memo</h2>
+        <p class="lead">The memo is the product.</p>
+        <p>It includes:</p>
+        <ul>
+          <li><strong>Expectation gaps</strong> — what guests assumed vs what they experienced</li>
+          <li><strong>Emotional inflection points</strong> — where and why sentiment shifted (with direct quotes)</li>
+          <li><strong>The story guests tell</strong> — the language they use to describe you to others</li>
+          <li><strong>What might be worth trying</strong> — one or two small changes suggested by patterns (starting points, not prescriptions)</li>
+        </ul>
+        <p class="smallprint">
+          If reflections don’t yield usable insight, we’ll say so—and you won’t be charged the full fee.
+        </p>
+      </section>
+
+      <!-- PRICING -->
+      <section class="card section" id="pricing" aria-label="Pricing">
+        <h2>Pricing (pilot only)</h2>
+        <p class="lead">Anthrosight is offered as a one-time pilot. No subscription.</p>
+
+        <div class="pricing">
+          <div class="priceCard">
+            <div class="priceTop">
+              <h3>10 reflections</h3>
+              <div class="price">$500</div>
+            </div>
+            <p>One experience type. One memo. Fixed scope.</p>
           </div>
-          <div class="quoteBox">
-            <strong style="display:block; margin-bottom:8px; font-size:14.5px;">Insights you don’t get from a rating:</strong>
-            <ul class="bullet">
-              <li>Which moments guests remember first (arrival, greeting, wait).</li>
-              <li>Where emotion shifted (from excited → anxious → resigned).</li>
-              <li>What guests tell friends (the “story”), not the score.</li>
-              <li>What “fine” actually means — and why it doesn’t convert to loyalty.</li>
-            </ul>
+          <div class="priceCard">
+            <div class="priceTop">
+              <h3>15 reflections</h3>
+              <div class="price">$750</div>
+            </div>
+            <p>More pattern visibility; still fast and lightweight.</p>
+          </div>
+          <div class="priceCard">
+            <div class="priceTop">
+              <h3>20 reflections</h3>
+              <div class="price">$1,000</div>
+            </div>
+            <p>Best for multi-location comparisons or subtle issues.</p>
           </div>
         </div>
       </section>
 
-      <section id="pilot" class="card cta" aria-label="Request a pilot">
+      <!-- WHO IT'S FOR -->
+      <section class="card section" id="fit" aria-label="Who this is for">
+        <h2>Who this is for</h2>
+        <div class="grid3">
+          <div class="mini">
+            <h3>Good fit</h3>
+            <p>You run a restaurant, boutique hotel, or local service business—and you read reviews but still feel unsure what to change.</p>
+          </div>
+          <div class="mini">
+            <h3>Probably not</h3>
+            <p>You want benchmarks, scores, statistically significant results, or automation at scale.</p>
+          </div>
+          <div class="mini">
+            <h3>The bet</h3>
+            <p>Owners will act on narrative insight they wouldn’t get from reviews or surveys. We test this through paid pilots.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PILOT CTA + FORM -->
+      <section class="card section cta" id="pilot" aria-label="Request a pilot">
         <div>
           <h2>Request a pilot</h2>
+          <p class="lead">If you’re curious whether this would explain something you don’t currently understand, request a pilot.</p>
           <p>
-            If you run a restaurant, hotel, or small group and want to understand guest experience beyond reviews and scores,
-            request a short pilot. We’ll reply with a simple plan and a flat pilot quote.
+            We’ll follow up with a quick scoping note, a clear timeline, and a flat price.
           </p>
-          <p class="smallprint" style="margin-top:10px;">
+          <p class="smallprint">
             Prefer email? <a href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request">hello@anthrosight.com</a>
           </p>
         </div>
 
-        <!-- NOTE:
-          This form uses a mailto fallback (no backend needed).
-          Replace action="" with your form provider endpoint if desired (Formspree, Basin, etc.).
-        -->
-        <div class="quoteBox" style="padding:16px;">
-          <form
-            action="mailto:hello@anthrosight.com"
-            method="post"
-            enctype="text/plain"
-          >
+        <!-- No-backend form (mailto). Replace with a form endpoint when ready. -->
+        <div class="mini" style="padding:16px;">
+          <form action="mailto:hello@anthrosight.com" method="post" enctype="text/plain">
             <div class="formRow">
               <div>
                 <label for="name">Name</label>
@@ -441,34 +544,34 @@
               </div>
               <div>
                 <label for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="you@company.com" required />
+                <input id="email" name="Email" type="email" placeholder="you@business.com" required />
               </div>
             </div>
 
             <div class="formRow">
               <div>
                 <label for="business">Business</label>
-                <input id="business" name="Business" placeholder="Hotel / restaurant name" />
+                <input id="business" name="Business" placeholder="Business name" />
               </div>
               <div>
                 <label for="city">City</label>
-                <input id="city" name="City" placeholder="Chicago, IL" />
+                <input id="city" name="City" placeholder="Madison, WI" />
               </div>
             </div>
 
             <div>
-              <label for="moment">What moment do you want to understand?</label>
-              <input id="moment" name="Moment" placeholder="e.g., after checkout, after dinner, after a service visit" />
+              <label for="moment">Which moment do you want to understand?</label>
+              <input id="moment" name="Moment" placeholder="e.g., after dinner, after checkout, after a service visit" />
             </div>
 
             <div>
               <label for="notes">Anything you’re noticing (optional)</label>
-              <textarea id="notes" name="Notes" placeholder="e.g., lots of 3-star reviews that say 'everything was fine'"></textarea>
+              <textarea id="notes" name="Notes" placeholder="e.g., lots of 3-star reviews that say ‘everything was fine’"></textarea>
             </div>
 
             <div class="submitRow">
               <button class="btn btnPrimary" type="submit">Send pilot request</button>
-              <span class="note">No backend required. This opens your email client.</span>
+              <span class="note">No backend required—this opens your email client.</span>
             </div>
           </form>
         </div>
@@ -476,12 +579,11 @@
 
       <footer class="footer" aria-label="Footer">
         <div>© <span id="y"></span> Anthrosight</div>
-        <div>Built for listening, not scoring.</div>
+        <div>Meaning over measurement.</div>
       </footer>
     </div>
 
     <script>
-      // Set footer year
       document.getElementById("y").textContent = new Date().getFullYear();
     </script>
   </body>
