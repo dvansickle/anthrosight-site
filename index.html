@@ -3,298 +3,427 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Anthrosight — Post-decision listening for SMBs</title>
+    <title>Anthrosight — Short customer conversations. A memo that explains what's not clicking.</title>
     <meta
       name="description"
-      content="Anthrosight is a post-decision listening service that captures short customer reflections (4–5 minutes, no surveys) and synthesizes them into a concise insight memo explaining what mattered, where expectations broke down, and why experiences felt the way they did."
+      content="Anthrosight captures short customer reflections (4–5 minutes) and delivers a clear memo explaining what actually mattered, where expectations broke down, and why your experience isn't landing the way you'd expect."
     />
     <meta name="robots" content="index,follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
     <style>
       :root{
-        --bg:#0b1020;
-        --panel: rgba(255,255,255,.05);
-        --panel2: rgba(255,255,255,.03);
-        --text:#e9edf7;
-        --muted:#b6c0d6;
-        --muted2:#8e9ab6;
-        --line:rgba(255,255,255,.12);
-        --brand:#7c5cff;
-        --brand2:#23c6b6;
-        --shadow: 0 18px 50px rgba(0,0,0,.35);
-        --radius: 18px;
+        --bg: #0c0f1a;
+        --bg2: #111627;
+        --panel: rgba(255,255,255,.045);
+        --panel2: rgba(255,255,255,.025);
+        --panel3: rgba(255,255,255,.015);
+        --text: #edf0f9;
+        --muted: #9aa5c0;
+        --muted2: #6b7897;
+        --line: rgba(255,255,255,.09);
+        --line2: rgba(255,255,255,.06);
+        --teal: #2dd4bf;
+        --teal-dim: rgba(45,212,191,.12);
+        --teal-line: rgba(45,212,191,.25);
+        --amber: #f59e0b;
+        --amber-dim: rgba(245,158,11,.1);
+        --radius: 20px;
         --radius2: 14px;
-        --max: 1040px;
+        --max: 1060px;
+        --serif: 'DM Serif Display', Georgia, serif;
+        --sans: 'DM Sans', system-ui, sans-serif;
       }
 
-      *{box-sizing:border-box}
-      html,body{height:100%}
+      *{box-sizing:border-box; margin:0; padding:0}
+      html{scroll-behavior:smooth}
       body{
-        margin:0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-        background:
-          radial-gradient(900px 600px at 20% 10%, rgba(124,92,255,.22), transparent 55%),
-          radial-gradient(900px 600px at 85% 25%, rgba(35,198,182,.18), transparent 55%),
-          radial-gradient(900px 600px at 50% 95%, rgba(124,92,255,.12), transparent 60%),
-          var(--bg);
-        color:var(--text);
-        line-height:1.5;
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
 
-      a{color:inherit}
-      .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 70px}
+      /* Subtle background texture */
+      body::before{
+        content:'';
+        position:fixed; inset:0; z-index:0; pointer-events:none;
+        background:
+          radial-gradient(ellipse 800px 500px at 15% 0%, rgba(45,212,191,.1), transparent 60%),
+          radial-gradient(ellipse 700px 400px at 90% 20%, rgba(124,92,255,.1), transparent 60%),
+          radial-gradient(ellipse 600px 400px at 50% 100%, rgba(45,212,191,.06), transparent 60%);
+      }
 
-      /* Nav */
+      .wrap{
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 24px 80px;
+        position: relative; z-index:1;
+      }
+
+      /* ── NAV ── */
       .nav{
         display:flex; align-items:center; justify-content:space-between;
-        gap:16px; padding:10px 0 22px;
+        gap:16px; padding:22px 0 28px;
       }
       .brand{
-        display:flex; align-items:center; gap:10px; text-decoration:none;
-        font-weight:750; letter-spacing:.2px;
+        display:flex; align-items:center; gap:10px;
+        text-decoration:none; color:var(--text);
+        font-weight:700; font-size:17px; letter-spacing:.2px;
       }
       .mark{
-        width:34px; height:34px; border-radius:10px;
-        background: linear-gradient(135deg, rgba(124,92,255,1), rgba(35,198,182,1));
-        box-shadow: 0 12px 30px rgba(124,92,255,.25);
-        flex: 0 0 auto;
+        width:32px; height:32px; border-radius:9px; flex:0 0 auto;
+        background: linear-gradient(135deg, #2dd4bf, #7c5cff);
+        box-shadow: 0 6px 20px rgba(45,212,191,.2);
       }
-      .navlinks{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+      .navlinks{display:flex; gap:4px; align-items:center}
       .navlinks a{
         text-decoration:none; color:var(--muted);
-        font-size:14px; padding:8px 10px; border-radius:10px;
-        border:1px solid transparent;
+        font-size:14px; padding:7px 12px; border-radius:10px;
+        transition: color .15s, background .15s;
       }
-      .navlinks a:hover{
-        color:var(--text);
-        border-color:var(--line);
-        background: rgba(255,255,255,.03);
-      }
+      .navlinks a:hover{ color:var(--text); background:var(--panel) }
 
-      /* Layout helpers */
-      .card{
-        background: linear-gradient(180deg, var(--panel), var(--panel2));
-        border:1px solid var(--line);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-      .section{
-        margin-top:18px;
-        padding:22px 22px;
-      }
-      .grid2{
+      /* ── HERO ── */
+      .hero{
         display:grid;
-        grid-template-columns: 1.15fr .85fr;
+        grid-template-columns: 1.1fr .9fr;
         gap:16px;
+        margin-bottom:16px;
         align-items:stretch;
       }
-      .grid3{
-        display:grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap:14px;
-      }
-      .mini{
-        padding:16px;
-        border-radius: var(--radius2);
+      .hero-main{
+        background: linear-gradient(160deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.02) 100%);
         border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
+        border-radius: var(--radius);
+        padding: 36px 36px 32px;
+        position:relative; overflow:hidden;
       }
-      .mini h3{margin:0 0 6px; font-size:14.5px}
-      .mini p{margin:0; color:var(--muted); font-size:13.5px}
+      .hero-main::before{
+        content:'';
+        position:absolute; top:-60px; left:-60px;
+        width:320px; height:320px; border-radius:50%;
+        background: radial-gradient(circle, rgba(45,212,191,.08), transparent 70%);
+        pointer-events:none;
+      }
 
-      /* Hero */
       .eyebrow{
-        display:inline-flex; align-items:center; gap:10px;
-        font-size:13px; color:var(--muted);
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
-        padding:8px 12px; border-radius:999px;
+        display:inline-flex; align-items:center; gap:8px;
+        font-size:12.5px; color:var(--muted);
+        border:1px solid var(--teal-line);
+        background: var(--teal-dim);
+        padding:6px 12px; border-radius:999px;
+        margin-bottom:20px;
+        letter-spacing:.3px;
       }
       .dot{
-        width:8px; height:8px; border-radius:99px;
-        background: var(--brand2);
-        box-shadow: 0 0 0 6px rgba(35,198,182,.12);
+        width:7px; height:7px; border-radius:99px;
+        background: var(--teal);
+        box-shadow: 0 0 0 5px rgba(45,212,191,.15);
+        animation: pulse 2.5s ease-in-out infinite;
       }
+      @keyframes pulse{
+        0%,100%{ box-shadow: 0 0 0 5px rgba(45,212,191,.15) }
+        50%{ box-shadow: 0 0 0 8px rgba(45,212,191,.05) }
+      }
+
       h1{
-        margin:14px 0 10px;
-        font-size: clamp(30px, 4vw, 44px);
-        line-height:1.08;
-        letter-spacing:-.6px;
+        font-family: var(--serif);
+        font-size: clamp(32px, 4.5vw, 48px);
+        line-height:1.1;
+        letter-spacing:-.3px;
+        margin-bottom:16px;
+        font-weight:400;
       }
-      .sub{
-        margin:0;
+      h1 em{
+        font-style:italic;
+        color: var(--teal);
+      }
+
+      .hero-sub{
         color: var(--muted);
-        font-size: 16.5px;
-        max-width: 70ch;
+        font-size: 15.5px;
+        line-height:1.6;
+        max-width:52ch;
+        margin-bottom:28px;
       }
-      .ctaRow{
-        margin-top:18px;
-        display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+      .hero-sub strong{ color:var(--text); font-weight:600 }
+
+      .cta-row{
+        display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+        margin-bottom:20px;
       }
       .btn{
         appearance:none; border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
+        background: var(--panel);
         color:var(--text);
-        padding:12px 14px;
-        border-radius: 14px;
+        padding:11px 16px;
+        border-radius: 12px;
         text-decoration:none;
-        font-weight:700;
+        font-family: var(--sans);
+        font-weight:600;
         font-size:14px;
-        display:inline-flex; align-items:center; gap:10px;
-        transition: transform .06s ease, background .15s ease, border-color .15s ease;
+        cursor:pointer;
+        display:inline-flex; align-items:center; gap:8px;
+        transition: transform .1s, background .15s, border-color .15s, box-shadow .15s;
       }
       .btn:hover{
-        background: rgba(255,255,255,.06);
-        border-color: rgba(255,255,255,.18);
+        background: rgba(255,255,255,.07);
+        border-color: rgba(255,255,255,.16);
         transform: translateY(-1px);
       }
-      .btnPrimary{
-        border-color: rgba(124,92,255,.45);
-        background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(35,198,182,.55));
-        box-shadow: 0 18px 40px rgba(124,92,255,.18);
+      .btn-primary{
+        border-color: rgba(45,212,191,.35);
+        background: linear-gradient(135deg, rgba(45,212,191,.9), rgba(124,92,255,.7));
+        color:#050a10;
+        font-weight:700;
+        box-shadow: 0 8px 30px rgba(45,212,191,.18);
       }
-      .btnPrimary:hover{transform: translateY(-1px); filter: brightness(1.02)}
-      .smallprint{
-        margin:12px 0 0;
-        color: var(--muted2);
-        font-size:13px;
+      .btn-primary:hover{
+        filter:brightness(1.05);
+        box-shadow: 0 12px 40px rgba(45,212,191,.25);
+        border-color: rgba(45,212,191,.5);
       }
 
-      /* Aside */
-      .sideTitle{
-        font-weight:800; margin:0 0 10px;
-        letter-spacing:-.2px;
-      }
-      .pillGrid{display:grid; gap:10px;}
-      .pill{
-        border:1px solid var(--line);
-        background: rgba(11,16,32,.55);
-        border-radius: 14px;
-        padding:12px 12px;
-      }
-      .pill .k{display:block; font-size:12px; color:var(--muted2); margin-bottom:4px}
-      .pill .v{display:block; font-size:14px; color:var(--text); font-weight:700}
-      .pill .s{display:block; font-size:13px; color:var(--muted); margin-top:6px}
+      .smallprint{ color:var(--muted2); font-size:12.5px }
 
-      /* Typography */
-      h2{
-        margin:0 0 10px;
-        font-size: 18px;
-        letter-spacing:-.2px;
+      /* ── ASIDE / GLANCE ── */
+      .hero-aside{
+        display:flex; flex-direction:column; gap:10px;
       }
-      p{margin:10px 0; color:var(--muted)}
-      .lead{color:var(--text); font-weight:650}
-      .quote{
-        margin:12px 0 0;
-        padding:14px 14px;
+      .glance-card{
+        flex:1;
+        background: var(--panel3);
+        border:1px solid var(--line2);
         border-radius: var(--radius2);
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
-        color:var(--text);
-        font-weight:650;
+        padding:16px 18px;
+      }
+      .glance-card .k{
+        display:block;
+        font-size:11.5px; font-weight:600;
+        text-transform:uppercase; letter-spacing:.8px;
+        color:var(--muted2);
+        margin-bottom:5px;
+      }
+      .glance-card .v{
+        display:block; font-size:15px; font-weight:700; color:var(--text);
+        margin-bottom:4px;
+      }
+      .glance-card .s{
+        display:block; font-size:13px; color:var(--muted); line-height:1.5;
       }
 
-      /* Lists */
-      ul{margin:10px 0 0; padding-left:18px; color:var(--muted)}
-      li{margin:6px 0}
+      /* ── SECTION ── */
+      .section{
+        background: linear-gradient(180deg, var(--panel), var(--panel2));
+        border:1px solid var(--line);
+        border-radius: var(--radius);
+        padding:28px 28px;
+        margin-bottom:14px;
+      }
+      .section-sm{ padding:22px 24px }
 
-      /* How it works steps */
+      h2{
+        font-family: var(--serif);
+        font-size:22px;
+        font-weight:400;
+        letter-spacing:-.2px;
+        margin-bottom:10px;
+        line-height:1.2;
+      }
+      h2 em{ font-style:italic; color:var(--teal) }
+      p{ color:var(--muted); font-size:14.5px; line-height:1.65 }
+      p.lead{ color:var(--text); font-size:15px; font-weight:500 }
+      p + p{ margin-top:8px }
+
+      .grid3{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+        margin-top:16px;
+      }
+      .mini{
+        padding:16px;
+        border-radius:12px;
+        border:1px solid var(--line2);
+        background:var(--panel3);
+      }
+      .mini h3{
+        font-size:14px; font-weight:700;
+        margin-bottom:6px; color:var(--text);
+      }
+      .mini p{ font-size:13.5px; margin:0 }
+
+      .blockquote{
+        margin:16px 0 0;
+        padding:16px 18px;
+        border-radius:12px;
+        border:1px solid rgba(245,158,11,.2);
+        background: rgba(245,158,11,.06);
+        color:var(--text);
+        font-family: var(--serif);
+        font-size:17px;
+        font-style:italic;
+        line-height:1.4;
+      }
+
+      /* ── MEMO DELIVERABLE ── */
+      .memo-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+        margin-top:16px;
+      }
+      .memo-item{
+        padding:14px 16px;
+        border-radius:12px;
+        border:1px solid var(--line2);
+        background:var(--panel3);
+        display:flex; gap:12px; align-items:flex-start;
+      }
+      .memo-icon{
+        width:28px; height:28px; border-radius:8px; flex:0 0 auto;
+        background: rgba(45,212,191,.12);
+        border:1px solid rgba(45,212,191,.2);
+        display:flex; align-items:center; justify-content:center;
+        font-size:14px;
+      }
+      .memo-item h3{ font-size:13.5px; font-weight:700; margin-bottom:3px; color:var(--text) }
+      .memo-item p{ font-size:13px; margin:0 }
+
+      /* ── HOW IT WORKS ── */
       .how{
         display:grid;
-        grid-template-columns: 1fr 1fr;
-        gap:14px;
-        margin-top:12px;
+        grid-template-columns:repeat(4,1fr);
+        gap:12px;
+        margin-top:16px;
       }
       .step{
         padding:16px;
-        border-radius: var(--radius2);
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
+        border-radius:12px;
+        border:1px solid var(--line2);
+        background:var(--panel3);
       }
       .step .n{
-        width:30px; height:30px; border-radius:10px;
+        width:28px; height:28px; border-radius:8px;
         display:inline-flex; align-items:center; justify-content:center;
-        background: rgba(124,92,255,.16);
-        border:1px solid rgba(124,92,255,.28);
-        font-weight:850; margin-bottom:10px;
+        background: rgba(45,212,191,.12);
+        border:1px solid rgba(45,212,191,.2);
+        font-weight:800; font-size:13px; color:var(--teal);
+        margin-bottom:10px;
       }
-      .step h3{margin:0 0 6px; font-size:14.5px}
-      .step p{margin:0; color:var(--muted); font-size:13.5px}
+      .step h3{ font-size:13.5px; font-weight:700; margin-bottom:5px; color:var(--text) }
+      .step p{ font-size:13px; margin:0 }
 
-      /* Pricing */
+      /* ── PRICING ── */
       .pricing{
         display:grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap:14px;
-        margin-top:12px;
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+        margin-top:16px;
       }
-      .priceCard{
-        padding:16px;
-        border-radius: var(--radius2);
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
+      .price-card{
+        padding:18px;
+        border-radius:12px;
+        border:1px solid var(--line2);
+        background:var(--panel3);
       }
-      .priceTop{
-        display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      .price-card.featured{
+        border-color: rgba(45,212,191,.3);
+        background: rgba(45,212,191,.06);
       }
-      .priceCard h3{margin:0; font-size:14.5px}
-      .price{
-        font-weight:900;
-        font-size:18px;
-        letter-spacing:-.2px;
-        color:var(--text);
+      .price-top{
+        display:flex; align-items:baseline; justify-content:space-between; gap:8px;
+        margin-bottom:8px;
       }
-      .priceCard p{margin:8px 0 0; color:var(--muted); font-size:13.5px}
+      .price-card h3{ font-size:14px; font-weight:700; color:var(--text) }
+      .price-num{ font-size:22px; font-weight:800; color:var(--text) }
+      .price-card p{ font-size:13px; margin:0 }
 
-      /* Pilot form */
-      .cta{
+      /* ── FIT ── */
+      .fit-grid{
         display:grid;
-        grid-template-columns: 1.1fr .9fr;
-        gap:14px;
-        align-items:stretch;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        margin-top:14px;
       }
-      form{display:grid; gap:10px}
-      label{font-size:12.5px; color:var(--muted2)}
+      .fit-good{
+        border-color: rgba(45,212,191,.25);
+        background: rgba(45,212,191,.04);
+      }
+      .fit-bad{
+        border-color: rgba(255,255,255,.07);
+      }
+
+      /* ── PILOT FORM ── */
+      .pilot-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:24px;
+        align-items:start;
+      }
+      form{ display:grid; gap:10px }
+      label{ font-size:12px; font-weight:600; color:var(--muted2); text-transform:uppercase; letter-spacing:.5px }
       input, textarea{
         width:100%;
-        padding:12px 12px;
-        border-radius: 14px;
+        padding:11px 14px;
+        border-radius:12px;
         border:1px solid var(--line);
-        background: rgba(11,16,32,.55);
+        background: rgba(12,15,26,.7);
         color:var(--text);
+        font-family: var(--sans);
+        font-size:14px;
         outline:none;
+        transition: border-color .15s, box-shadow .15s;
       }
+      input::placeholder, textarea::placeholder{ color:var(--muted2) }
       input:focus, textarea:focus{
-        border-color: rgba(124,92,255,.55);
-        box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+        border-color: rgba(45,212,191,.4);
+        box-shadow: 0 0 0 4px rgba(45,212,191,.1);
       }
-      textarea{min-height:92px; resize:vertical}
-      .formRow{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
-      .submitRow{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-      .note{font-size:12.5px; color:var(--muted2)}
+      textarea{ min-height:90px; resize:vertical }
+      .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+      .submit-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
 
-      /* Footer */
+      /* ── FOOTER ── */
       .footer{
-        margin-top:26px;
-        display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-        color:var(--muted2);
-        font-size:12.5px;
-        padding:10px 4px 0;
+        margin-top:28px;
+        display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+        color:var(--muted2); font-size:12.5px;
+        padding-top:16px;
+        border-top:1px solid var(--line2);
       }
 
-      /* Responsive */
-      @media (max-width: 920px){
-        .grid2{grid-template-columns: 1fr}
-        .grid3{grid-template-columns: 1fr}
-        .how{grid-template-columns: 1fr}
-        .pricing{grid-template-columns: 1fr}
-        .cta{grid-template-columns: 1fr}
-        .formRow{grid-template-columns: 1fr}
+      /* ── RESPONSIVE ── */
+      @media (max-width:900px){
+        .hero{ grid-template-columns:1fr }
+        .hero-aside{ flex-direction:row }
+        .glance-card{ flex:1 }
+        .how{ grid-template-columns:1fr 1fr }
+        .grid3{ grid-template-columns:1fr 1fr }
+        .memo-grid{ grid-template-columns:1fr }
+        .pilot-grid{ grid-template-columns:1fr }
+        .fit-grid{ grid-template-columns:1fr }
+      }
+      @media (max-width:600px){
+        .hero-aside{ flex-direction:column }
+        .how{ grid-template-columns:1fr }
+        .grid3{ grid-template-columns:1fr }
+        .pricing{ grid-template-columns:1fr }
+        .form-row{ grid-template-columns:1fr }
+        .navlinks{ display:none }
+        h1{ font-size:30px }
       }
     </style>
   </head>
 
   <body>
     <div class="wrap">
+
+      <!-- NAV -->
       <header class="nav">
         <a class="brand" href="#top" aria-label="Anthrosight home">
           <span class="mark" aria-hidden="true"></span>
@@ -302,122 +431,118 @@
         </a>
         <nav class="navlinks" aria-label="Site">
           <a href="#how">How it works</a>
-          <a href="#questions">Questions</a>
           <a href="#pricing">Pricing</a>
           <a href="#pilot">Pilot</a>
         </nav>
       </header>
 
-      <!-- HERO -->
-      <main id="top" class="grid2">
-        <section class="card section">
-          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Post-decision listening for SMBs</div>
-          <h1>Understand why experiences felt the way they did — not just how they were rated.</h1>
-
-          <p class="sub">
-            <span class="lead" style="font-weight:700;">Anthrosight</span> is a post-decision listening service for restaurants, boutique hotels, and local businesses.
-            We capture short customer reflections (<strong>4–5 minutes</strong>, no surveys) and turn them into a concise memo explaining what actually mattered,
-            where expectations broke down, and why “everything was fine” still didn’t quite click.
+      <!-- ── HERO ── -->
+      <div class="hero" id="top">
+        <div class="hero-main">
+          <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Post-decision listening for small businesses</div>
+          <h1>Short customer conversations.<br><em>A memo</em> that explains what's not clicking.</h1>
+          <p class="hero-sub">
+            Anthrosight captures brief customer reflections — <strong>4–5 minutes, no surveys, no ratings</strong> —
+            and synthesizes them into a readable memo: what guests actually expected, where feelings shifted,
+            and the quiet reasons people don't come back.
           </p>
-
-          <p class="sub" style="margin-top:10px;">
-            <strong>No surveys. No dashboards. No scores.</strong>
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn btnPrimary" href="#pilot">Request a pilot <span aria-hidden="true">→</span></a>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#pilot">Request a pilot →</a>
             <a class="btn" href="#how">See how it works</a>
             <a class="btn" href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request">Email us</a>
           </div>
+          <p class="smallprint">For restaurants, boutique hotels, and local service businesses. One experience at a time.</p>
+        </div>
 
-          <p class="smallprint">
-            Designed for independent businesses and small groups. One experience at a time.
-          </p>
-        </section>
-
-        <aside class="card section" aria-label="At a glance">
-          <h2 class="sideTitle">At a glance</h2>
-          <div class="pillGrid">
-            <div class="pill">
-              <span class="k">Best for</span>
-              <span class="v">When reviews don’t explain behavior</span>
-              <span class="s">3-star mysteries, repeat-visit puzzles, “fine but not memorable.”</span>
-            </div>
-            <div class="pill">
-              <span class="k">What guests do</span>
-              <span class="v">4–5 minute reflection</span>
-              <span class="s">A short conversation via a link in an email you already send.</span>
-            </div>
-            <div class="pill">
-              <span class="k">What you get</span>
-              <span class="v">A memo you’ll actually read</span>
-              <span class="s">Expectation gaps, emotional inflection points, and the story guests tell.</span>
-            </div>
+        <div class="hero-aside" aria-label="At a glance">
+          <div class="glance-card">
+            <span class="k">Best for</span>
+            <span class="v">When reviews don't explain behavior</span>
+            <span class="s">3-star mysteries, repeat-visit puzzles, "fine but not memorable."</span>
           </div>
-        </aside>
-      </main>
+          <div class="glance-card">
+            <span class="k">What guests do</span>
+            <span class="v">4–5 minute reflection</span>
+            <span class="s">A short AI-guided conversation, via a link in an email you already send.</span>
+          </div>
+          <div class="glance-card">
+            <span class="k">What you receive</span>
+            <span class="v">A memo you'll actually read</span>
+            <span class="s">Expectation gaps, emotional inflection points, and what guests tell their friends.</span>
+          </div>
+        </div>
+      </div>
 
-      <!-- PROBLEM -->
-      <section class="card section" id="problem" aria-label="Problem statement">
-        <h2>The problem</h2>
-        <p class="lead">You already have feedback: star ratings, reviews, maybe a post-visit survey.</p>
-        <p>
-          The problem isn’t <em>lack</em> of feedback. It’s that none of it explains <strong>why</strong> customers behave as they do.
-        </p>
-        <div class="quote">“Everything looks fine — but something isn’t clicking.”</div>
+      <!-- ── THE PROBLEM ── -->
+      <section class="section section-sm" id="problem" aria-label="The problem">
+        <h2>You have feedback. It's not telling you <em>why</em>.</h2>
+        <p class="lead" style="margin-top:10px;">Star ratings, reviews, post-visit surveys — you have plenty. The problem is that none of it explains why customers behave as they do.</p>
 
-        <div class="grid3" style="margin-top:14px;">
+        <div class="blockquote">"Everything looks fine — but something isn't clicking."</div>
+
+        <div class="grid3">
           <div class="mini">
             <h3>Scores flatten the story</h3>
-            <p>Ratings tell you what guests felt, but not what created that feeling.</p>
+            <p>Ratings tell you what guests felt, not what created that feeling.</p>
           </div>
           <div class="mini">
-            <h3>Reviews are incomplete</h3>
-            <p>They over-index on extremes and miss the quiet reasons people don’t return.</p>
+            <h3>Reviews miss the middle</h3>
+            <p>They over-index on extremes. The quiet reasons people don't return go unrecorded.</p>
           </div>
           <div class="mini">
-            <h3>Surveys optimize for measurement</h3>
-            <p>They ask people to be data points—right when context is everything.</p>
+            <h3>Surveys optimize for data</h3>
+            <p>They ask people to be data points — right when context and nuance are everything.</p>
           </div>
         </div>
       </section>
 
-      <!-- WHAT IT DOES -->
-      <section class="card section" id="what" aria-label="What Anthrosight does">
-        <h2>What Anthrosight does</h2>
-        <p class="lead">
-          Anthrosight runs short, post-visit reflections with recent customers and synthesizes what they say into a clear, readable insight memo.
-        </p>
-        <p>
-          Instead of asking customers to rate their experience, we ask them to briefly reflect on it. What comes out is:
-          expectation gaps, emotional inflection points, and the language customers use when describing you to others—things
-          ratings and surveys systematically miss.
-        </p>
+      <!-- ── THE DELIVERABLE (moved up) ── -->
+      <section class="section" id="memo" aria-label="What you receive">
+        <h2>The deliverable: <em>a memo</em></h2>
+        <p class="lead" style="margin-top:8px;">Not a dashboard. Not a score. A short, readable memo written for a business owner.</p>
+        <p style="margin-top:6px;">After 10–20 customer reflections are gathered and analyzed, you receive a document that explains what actually happened — in plain language, with direct quotes.</p>
 
-        <div class="grid3" style="margin-top:14px;">
-          <div class="mini">
-            <h3>This is</h3>
-            <p>A small, fixed-scope listening service delivered as a memo.</p>
+        <div class="memo-grid">
+          <div class="memo-item">
+            <div class="memo-icon">↔</div>
+            <div>
+              <h3>Expectation gaps</h3>
+              <p>What guests assumed before arriving vs. what they actually experienced.</p>
+            </div>
           </div>
-          <div class="mini">
-            <h3>This isn’t</h3>
-            <p>A survey platform, CX dashboard, benchmarking tool, or “AI analytics.”</p>
+          <div class="memo-item">
+            <div class="memo-icon">◉</div>
+            <div>
+              <h3>Emotional inflection points</h3>
+              <p>Where and why sentiment shifted during the experience — with direct quotes.</p>
+            </div>
           </div>
-          <div class="mini">
-            <h3>Why it matters</h3>
-            <p>Because understanding precedes optimization—and often costs less.</p>
+          <div class="memo-item">
+            <div class="memo-icon">💬</div>
+            <div>
+              <h3>The story guests tell</h3>
+              <p>The exact language customers use when describing you to others.</p>
+            </div>
+          </div>
+          <div class="memo-item">
+            <div class="memo-icon">→</div>
+            <div>
+              <h3>What might be worth trying</h3>
+              <p>One or two small, concrete changes suggested by patterns. Starting points, not prescriptions.</p>
+            </div>
           </div>
         </div>
+        <p class="smallprint" style="margin-top:14px;">If reflections don't yield usable insight, we'll say so — and you won't be charged the full fee.</p>
       </section>
 
-      <!-- HOW IT WORKS -->
-      <section class="card section" id="how" aria-label="How a pilot works">
+      <!-- ── HOW IT WORKS ── -->
+      <section class="section" id="how" aria-label="How a pilot works">
         <h2>How a pilot works</h2>
         <div class="how">
           <div class="step">
             <div class="n">1</div>
             <h3>Pick one moment</h3>
-            <p>After a meal, after checkout, after a service visit—one experience type at a time.</p>
+            <p>After a meal, checkout, or service visit — we focus on one experience type at a time.</p>
           </div>
           <div class="step">
             <div class="n">2</div>
@@ -426,160 +551,115 @@
           </div>
           <div class="step">
             <div class="n">3</div>
-            <h3>Customers reflect for 4–5 minutes</h3>
-            <p>No ratings, no scales—just a short conversation designed to capture meaning.</p>
+            <h3>Customers have a brief conversation</h3>
+            <p>A 4–5 minute AI-guided reflection — not a survey or form. Customers talk; we listen.</p>
           </div>
           <div class="step">
             <div class="n">4</div>
-            <h3>You receive a concise insight memo</h3>
-            <p>What guests expected, where feelings shifted, and what might be worth trying.</p>
+            <h3>You receive the memo</h3>
+            <p>What guests expected, where feelings shifted, and what might be worth changing.</p>
           </div>
         </div>
-        <p class="smallprint" style="margin-top:12px;">
-          Anthrosight intentionally does not own email delivery in v1—your business stays in control of customer communication.
-        </p>
+        <p class="smallprint" style="margin-top:12px;">Your business stays in control of customer communication — Anthrosight doesn't own email delivery.</p>
       </section>
 
-      <!-- QUESTIONS -->
-      <section class="card section" id="questions" aria-label="What customers are asked">
-        <h2>What customers are actually asked</h2>
-        <p class="lead">Every reflection follows the same simple structure:</p>
-        <ul>
-          <li><strong>“Thinking back on your visit, what stood out most to you?”</strong></li>
-          <li><strong>“Was that what you expected going in — or different in some way?”</strong></li>
-          <li><strong>“Was there a moment where how you felt about the experience changed?”</strong></li>
-          <li><strong>“If you were telling a friend about this place, what would you say?”</strong></li>
-        </ul>
-        <p class="smallprint">
-          Optional final prompt (time permitting): “Anything you wish had been different?”<br/>
-          No surveys. No demographics. No forced completeness.
-        </p>
-      </section>
-
-      <!-- MEMO -->
-      <section class="card section" id="memo" aria-label="The memo deliverable">
-        <h2>The deliverable: the memo</h2>
-        <p class="lead">The memo is the product.</p>
-        <p>It includes:</p>
-        <ul>
-          <li><strong>Expectation gaps</strong> — what guests assumed vs what they experienced</li>
-          <li><strong>Emotional inflection points</strong> — where and why sentiment shifted (with direct quotes)</li>
-          <li><strong>The story guests tell</strong> — the language they use to describe you to others</li>
-          <li><strong>What might be worth trying</strong> — one or two small changes suggested by patterns (starting points, not prescriptions)</li>
-        </ul>
-        <p class="smallprint">
-          If reflections don’t yield usable insight, we’ll say so—and you won’t be charged the full fee.
-        </p>
-      </section>
-
-      <!-- PRICING -->
-      <section class="card section" id="pricing" aria-label="Pricing">
-        <h2>Pricing (pilot only)</h2>
-        <p class="lead">Anthrosight is offered as a one-time pilot. No subscription.</p>
+      <!-- ── PRICING ── -->
+      <section class="section section-sm" id="pricing" aria-label="Pricing">
+        <h2>Pricing — pilot only</h2>
+        <p class="lead" style="margin-top:8px;">One-time, fixed scope. No subscription, no platform to learn.</p>
 
         <div class="pricing">
-          <div class="priceCard">
-            <div class="priceTop">
+          <div class="price-card">
+            <div class="price-top">
               <h3>10 reflections</h3>
-              <div class="price">$500</div>
+              <div class="price-num">$500</div>
             </div>
-            <p>One experience type. One memo. Fixed scope.</p>
+            <p>One experience type. One memo. A clean, bounded starting point.</p>
           </div>
-          <div class="priceCard">
-            <div class="priceTop">
+          <div class="price-card featured">
+            <div class="price-top">
               <h3>15 reflections</h3>
-              <div class="price">$750</div>
+              <div class="price-num">$750</div>
             </div>
-            <p>More pattern visibility; still fast and lightweight.</p>
+            <p>More pattern visibility. Still fast and lightweight to run.</p>
           </div>
-          <div class="priceCard">
-            <div class="priceTop">
+          <div class="price-card">
+            <div class="price-top">
               <h3>20 reflections</h3>
-              <div class="price">$1,000</div>
+              <div class="price-num">$1,000</div>
             </div>
-            <p>Best for multi-location comparisons or subtle issues.</p>
+            <p>Best for multi-location comparisons or subtle, hard-to-pinpoint issues.</p>
           </div>
         </div>
       </section>
 
-      <!-- WHO IT'S FOR -->
-      <section class="card section" id="fit" aria-label="Who this is for">
-        <h2>Who this is for</h2>
-        <div class="grid3">
-          <div class="mini">
-            <h3>Good fit</h3>
-            <p>You run a restaurant, boutique hotel, or local service business—and you read reviews but still feel unsure what to change.</p>
+      <!-- ── WHO IT'S FOR ── -->
+      <section class="section section-sm" id="fit" aria-label="Who this is for">
+        <h2>Is this for you?</h2>
+        <div class="fit-grid" style="margin-top:14px;">
+          <div class="mini fit-good">
+            <h3>✓ Good fit</h3>
+            <p>You run a restaurant, boutique hotel, or local service business. You read your reviews and still feel unsure what to change. Something isn't clicking and you can't quite name it.</p>
           </div>
-          <div class="mini">
-            <h3>Probably not</h3>
-            <p>You want benchmarks, scores, statistically significant results, or automation at scale.</p>
-          </div>
-          <div class="mini">
-            <h3>The bet</h3>
-            <p>Owners will act on narrative insight they wouldn’t get from reviews or surveys. We test this through paid pilots.</p>
+          <div class="mini fit-bad">
+            <h3>✗ Probably not</h3>
+            <p>You're looking for benchmarks, statistically significant results, CX dashboards, or automation at scale. Anthrosight is deliberately small-scale and narrative — not a platform.</p>
           </div>
         </div>
       </section>
 
-      <!-- PILOT CTA + FORM -->
-      <section class="card section cta" id="pilot" aria-label="Request a pilot">
-        <div>
-          <h2>Request a pilot</h2>
-          <p class="lead">If you’re curious whether this would explain something you don’t currently understand, request a pilot.</p>
-          <p>
-            We’ll follow up with a quick scoping note, a clear timeline, and a flat price.
-          </p>
-          <p class="smallprint">
-            Prefer email? <a href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request">hello@anthrosight.com</a>
-          </p>
-        </div>
+      <!-- ── PILOT CTA ── -->
+      <section class="section" id="pilot" aria-label="Request a pilot">
+        <div class="pilot-grid">
+          <div>
+            <h2>Request a pilot</h2>
+            <p class="lead" style="margin-top:10px;">If you're curious whether this would explain something you don't currently understand, let's find out.</p>
+            <p style="margin-top:8px;">We'll follow up with a quick scoping note, a clear timeline, and a flat price. No commitment until you've seen the scope.</p>
+            <p class="smallprint" style="margin-top:14px;">Prefer email? <a href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request" style="color:var(--teal)">hello@anthrosight.com</a></p>
+          </div>
 
-        <!-- No-backend form (mailto). Replace with a form endpoint when ready. -->
-        <div class="mini" style="padding:16px;">
-          <form action="mailto:hello@anthrosight.com" method="post" enctype="text/plain">
-            <div class="formRow">
-              <div>
-                <label for="name">Name</label>
-                <input id="name" name="Name" placeholder="Your name" required />
+          <div>
+            <form action="mailto:hello@anthrosight.com" method="post" enctype="text/plain">
+              <div class="form-row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="Name" placeholder="Your name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="Email" type="email" placeholder="you@business.com" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="business">Business</label>
+                  <input id="business" name="Business" placeholder="Business name" />
+                </div>
+                <div>
+                  <label for="city">City</label>
+                  <input id="city" name="City" placeholder="City, State" />
+                </div>
               </div>
               <div>
-                <label for="email">Email</label>
-                <input id="email" name="Email" type="email" placeholder="you@business.com" required />
-              </div>
-            </div>
-
-            <div class="formRow">
-              <div>
-                <label for="business">Business</label>
-                <input id="business" name="Business" placeholder="Business name" />
+                <label for="moment">Which moment do you want to understand?</label>
+                <input id="moment" name="Moment" placeholder="e.g., after dinner, after checkout, after a service visit" />
               </div>
               <div>
-                <label for="city">City</label>
-                <input id="city" name="City" placeholder="Madison, WI" />
+                <label for="notes">Anything you're noticing? (optional)</label>
+                <textarea id="notes" name="Notes" placeholder="e.g., lots of 3-star reviews that say 'everything was fine'"></textarea>
               </div>
-            </div>
-
-            <div>
-              <label for="moment">Which moment do you want to understand?</label>
-              <input id="moment" name="Moment" placeholder="e.g., after dinner, after checkout, after a service visit" />
-            </div>
-
-            <div>
-              <label for="notes">Anything you’re noticing (optional)</label>
-              <textarea id="notes" name="Notes" placeholder="e.g., lots of 3-star reviews that say ‘everything was fine’"></textarea>
-            </div>
-
-            <div class="submitRow">
-              <button class="btn btnPrimary" type="submit">Send pilot request</button>
-              <span class="note">No backend required—this opens your email client.</span>
-            </div>
-          </form>
+              <div class="submit-row">
+                <button class="btn btn-primary" type="submit">Send pilot request</button>
+                <span class="smallprint">Opens your email client</span>
+              </div>
+            </form>
+          </div>
         </div>
       </section>
 
       <footer class="footer" aria-label="Footer">
         <div>© <span id="y"></span> Anthrosight</div>
-        <div>Meaning over measurement.</div>
+        <div style="color:var(--muted2)">Meaning over measurement.</div>
       </footer>
     </div>
 
