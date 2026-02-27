@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
     <style>
       :root{
         --bg: #0c0f1a;
@@ -47,7 +48,6 @@
         overflow-x: hidden;
       }
 
-      /* Subtle background texture */
       body::before{
         content:'';
         position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -64,7 +64,6 @@
         position: relative; z-index:1;
       }
 
-      /* ── NAV ── */
       .nav{
         display:flex; align-items:center; justify-content:space-between;
         gap:16px; padding:22px 0 28px;
@@ -87,7 +86,6 @@
       }
       .navlinks a:hover{ color:var(--text); background:var(--panel) }
 
-      /* ── HERO ── */
       .hero{
         display:grid;
         grid-template-columns: 1.1fr .9fr;
@@ -190,7 +188,6 @@
 
       .smallprint{ color:var(--muted2); font-size:12.5px }
 
-      /* ── ASIDE / GLANCE ── */
       .hero-aside{
         display:flex; flex-direction:column; gap:10px;
       }
@@ -216,7 +213,6 @@
         display:block; font-size:13px; color:var(--muted); line-height:1.5;
       }
 
-      /* ── SECTION ── */
       .section{
         background: linear-gradient(180deg, var(--panel), var(--panel2));
         border:1px solid var(--line);
@@ -270,7 +266,6 @@
         line-height:1.4;
       }
 
-      /* ── MEMO DELIVERABLE ── */
       .memo-grid{
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -294,7 +289,6 @@
       .memo-item h3{ font-size:13.5px; font-weight:700; margin-bottom:3px; color:var(--text) }
       .memo-item p{ font-size:13px; margin:0 }
 
-      /* ── HOW IT WORKS ── */
       .how{
         display:grid;
         grid-template-columns:repeat(4,1fr);
@@ -318,7 +312,6 @@
       .step h3{ font-size:13.5px; font-weight:700; margin-bottom:5px; color:var(--text) }
       .step p{ font-size:13px; margin:0 }
 
-      /* ── PRICING ── */
       .pricing{
         display:grid;
         grid-template-columns:repeat(3,1fr);
@@ -343,7 +336,6 @@
       .price-num{ font-size:22px; font-weight:800; color:var(--text) }
       .price-card p{ font-size:13px; margin:0 }
 
-      /* ── FIT ── */
       .fit-grid{
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -358,7 +350,6 @@
         border-color: rgba(255,255,255,.07);
       }
 
-      /* ── PILOT FORM ── */
       .pilot-grid{
         display:grid;
         grid-template-columns:1fr 1fr;
@@ -388,7 +379,6 @@
       .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
       .submit-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
 
-      /* ── FOOTER ── */
       .footer{
         margin-top:28px;
         display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
@@ -397,7 +387,6 @@
         border-top:1px solid var(--line2);
       }
 
-      /* ── RESPONSIVE ── */
       @media (max-width:900px){
         .hero{ grid-template-columns:1fr }
         .hero-aside{ flex-direction:row }
@@ -418,32 +407,58 @@
         h1{ font-size:30px }
       }
     </style>
+
+    <!-- PostHog (install snippet + validation instrumentation) -->
     <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_j4GCXfAKIK564F7fh4suY9WlcFQVus6wu5AC3W7UOBb', {
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group identify setPersonProperties setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags resetGroups onFeatureFlags addFeatureFlagsHandler onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+
+      // 1) Initialize PostHog
+      posthog.init('PH_PROJECT_KEY_HERE', {
         api_host: 'https://us.i.posthog.com',
         defaults: '2026-01-30'
-    })
+      });
+
+      // 2) Persist UTMs + safe capture helper
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+        var props = {};
+        keys.forEach(function (k) {
+          var v = params.get(k);
+          if (v) props[k] = v;
+        });
+        if (Object.keys(props).length) posthog.register(props);
+
+        window.phCap = function (eventName, properties) {
+          try {
+            if (window.posthog && typeof window.posthog.capture === 'function') {
+              window.posthog.capture(eventName, properties || {});
+            }
+          } catch (e) {}
+        };
+
+        // Optional: mark page variant if you later test multiple versions
+        window.phCap('page_loaded', { page: 'landing_v1' });
+      })();
     </script>
   </head>
 
   <body>
     <div class="wrap">
-
       <!-- NAV -->
       <header class="nav">
-        <a class="brand" href="#top" aria-label="Anthrosight home">
+        <a class="brand" href="#top" aria-label="Anthrosight home" id="brand-home">
           <span class="mark" aria-hidden="true"></span>
           <span>Anthrosight</span>
         </a>
         <nav class="navlinks" aria-label="Site">
-          <a href="#how">How it works</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#pilot">Pilot</a>
+          <a href="#how" id="nav-how">How it works</a>
+          <a href="#pricing" id="nav-pricing">Pricing</a>
+          <a href="#pilot" id="nav-pilot">Pilot</a>
         </nav>
       </header>
 
-      <!-- ── HERO ── -->
+      <!-- HERO -->
       <div class="hero" id="top">
         <div class="hero-main">
           <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Post-decision listening for small businesses</div>
@@ -454,8 +469,8 @@
             and the quiet reasons people don't come back.
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#pilot">Request a pilot →</a>
-            <a class="btn" href="#how">See how it works</a>
+            <a class="btn btn-primary" href="#pilot" id="cta-hero-pilot">Request a pilot →</a>
+            <a class="btn" href="#how" id="cta-hero-how">See how it works</a>
           </div>
           <p class="smallprint">For restaurants, boutique hotels, and local service businesses. One experience at a time.</p>
         </div>
@@ -479,7 +494,7 @@
         </div>
       </div>
 
-      <!-- ── THE PROBLEM ── -->
+      <!-- THE PROBLEM -->
       <section class="section section-sm" id="problem" aria-label="The problem">
         <h2>You have feedback. It's not telling you <em>why</em>.</h2>
         <p class="lead" style="margin-top:10px;">Star ratings, reviews, post-visit surveys — you have plenty. The problem is that none of it explains why customers behave as they do.</p>
@@ -502,7 +517,7 @@
         </div>
       </section>
 
-      <!-- ── THE DELIVERABLE (moved up) ── -->
+      <!-- THE DELIVERABLE -->
       <section class="section" id="memo" aria-label="What you receive">
         <h2>The deliverable: <em>a memo</em></h2>
         <p class="lead" style="margin-top:8px;">Not a dashboard. Not a score. A short, readable memo written for a business owner.</p>
@@ -541,7 +556,7 @@
         <p class="smallprint" style="margin-top:14px;">If reflections don't yield usable insight, we'll say so — and you won't be charged the full fee.</p>
       </section>
 
-      <!-- ── HOW IT WORKS ── -->
+      <!-- HOW IT WORKS -->
       <section class="section" id="how" aria-label="How a pilot works">
         <h2>How a pilot works</h2>
         <div class="how">
@@ -569,7 +584,7 @@
         <p class="smallprint" style="margin-top:12px;">Your business stays in control of customer communication — Anthrosight doesn't own email delivery.</p>
       </section>
 
-      <!-- ── PRICING ── -->
+      <!-- PRICING -->
       <section class="section section-sm" id="pricing" aria-label="Pricing">
         <h2>Pricing — pilot only</h2>
         <p class="lead" style="margin-top:8px;">One-time, fixed scope. No subscription, no platform to learn.</p>
@@ -599,7 +614,7 @@
         </div>
       </section>
 
-      <!-- ── WHO IT'S FOR ── -->
+      <!-- WHO IT'S FOR -->
       <section class="section section-sm" id="fit" aria-label="Who this is for">
         <h2>Is this for you?</h2>
         <div class="fit-grid" style="margin-top:14px;">
@@ -614,18 +629,21 @@
         </div>
       </section>
 
-      <!-- ── PILOT CTA ── -->
+      <!-- PILOT CTA -->
       <section class="section" id="pilot" aria-label="Request a pilot">
         <div class="pilot-grid">
           <div>
             <h2>Request a pilot</h2>
             <p class="lead" style="margin-top:10px;">If you're curious whether this would explain something you don't currently understand, let's find out.</p>
             <p style="margin-top:8px;">We'll follow up with a quick scoping note, a clear timeline, and a flat price. No commitment until you've seen the scope.</p>
-           <!-- <p class="smallprint" style="margin-top:14px;">Prefer email? <a href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request" style="color:var(--teal)">hello@anthrosight.com</a></p> -->
+            <p class="smallprint" style="margin-top:14px;">
+              Prefer email?
+              <a id="mailto-pilot" href="mailto:hello@anthrosight.com?subject=Anthrosight%20pilot%20request" style="color:var(--teal)">hello@anthrosight.com</a>
+            </p>
           </div>
 
           <div>
-            <form action="https://formspree.io/f/mzdavvkr" method="POST">
+            <form action="https://formspree.io/f/mzdavvkr" method="POST" id="pilot-form">
               <div class="form-row">
                 <div>
                   <label for="name">Name</label>
@@ -672,29 +690,109 @@
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
 
-      const form = document.querySelector('form');
+      // ---- click tracking helpers ----
+      function bindClick(id, eventName, props) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('click', function () {
+          window.phCap(eventName, props || {});
+        });
+      }
+
+      // Brand / nav
+      bindClick('brand-home', 'nav_click', { target: 'top', location: 'brand' });
+      bindClick('nav-how', 'nav_click', { target: 'how', location: 'nav' });
+      bindClick('nav-pricing', 'nav_click', { target: 'pricing', location: 'nav' });
+      bindClick('nav-pilot', 'nav_click', { target: 'pilot', location: 'nav' });
+
+      // Hero CTAs
+      bindClick('cta-hero-pilot', 'cta_click', { id: 'hero_pilot', location: 'hero' });
+      bindClick('cta-hero-how', 'cta_click', { id: 'hero_how', location: 'hero' });
+
+      // Mailto fallback
+      bindClick('mailto-pilot', 'mailto_click', { location: 'pilot' });
+
+      // ---- engagement: scroll depth (25/50/75) ----
+      (function () {
+        var fired = { 25:false, 50:false, 75:false };
+        function pctScrolled() {
+          var doc = document.documentElement;
+          var scrollTop = window.scrollY || doc.scrollTop;
+          var height = (doc.scrollHeight - window.innerHeight);
+          if (height <= 0) return 100;
+          return Math.round((scrollTop / height) * 100);
+        }
+        window.addEventListener('scroll', function () {
+          var p = pctScrolled();
+          [25,50,75].forEach(function (t) {
+            if (!fired[t] && p >= t) {
+              fired[t] = true;
+              window.phCap('scroll_depth', { percent: t });
+            }
+          });
+        }, { passive: true });
+      })();
+
+      // ---- engagement: time on page (30s) ----
+      setTimeout(function () {
+        window.phCap('time_on_page_30s');
+      }, 30000);
+
+      // ---- intent: pilot section viewed ----
+      (function () {
+        var pilot = document.getElementById('pilot');
+        if (!pilot || !('IntersectionObserver' in window)) return;
+
+        var seen = false;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!seen && entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+              seen = true;
+              window.phCap('pilot_section_view');
+              io.disconnect();
+            }
+          });
+        }, { threshold: [0.35] });
+
+        io.observe(pilot);
+      })();
+
+      // ---- Formspree submit + tracking ----
+      const form = document.getElementById('pilot-form');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Attempt event (do NOT include field values)
+        window.phCap('form_submit_attempt', { form: 'pilot_request' });
+
         const btn = document.getElementById('submit-btn');
         const status = document.getElementById('form-status');
         btn.textContent = 'Sending…';
         btn.disabled = true;
+
         try {
           const res = await fetch(form.action, {
             method: 'POST',
             body: new FormData(form),
             headers: { 'Accept': 'application/json' }
           });
+
           if (res.ok) {
+            window.phCap('form_submit_success', { form: 'pilot_request' });
+
             form.reset();
             btn.textContent = 'Sent!';
             status.textContent = "We'll be in touch shortly.";
           } else {
+            window.phCap('form_submit_error', { form: 'pilot_request', status: res.status });
+
             btn.textContent = 'Send pilot request';
             btn.disabled = false;
             status.textContent = 'Something went wrong — please email hello@anthrosight.com';
           }
-        } catch {
+        } catch (err) {
+          window.phCap('form_submit_error', { form: 'pilot_request', status: 'network_error' });
+
           btn.textContent = 'Send pilot request';
           btn.disabled = false;
           status.textContent = 'Something went wrong — please email hello@anthrosight.com';
